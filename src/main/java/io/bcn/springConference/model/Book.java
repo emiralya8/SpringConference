@@ -1,11 +1,14 @@
 package io.bcn.springConference.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.ManyToAny;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -15,6 +18,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Book {
 
     @Id
@@ -34,6 +38,8 @@ public class Book {
     @Column(nullable = false, unique = true)
     private String ISBN;
 
-/*    @OneToMany(mappedBy = "book")
-    private List<Conference> conferences;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "book")
+    private List<Conference> conferences;
+
 }
