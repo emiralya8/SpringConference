@@ -1,0 +1,15 @@
+
+.right-top-avatar {
+    position: fixed;
+    margin-top: -3rem;
+    margin-left: 69%;
+}
+
+@media (max-width: 1020px) {
+    .right-top-avatar {
+        position: fixed;
+        margin-top: -3rem;
+        margin-left: 94%;
+    }
+}
+

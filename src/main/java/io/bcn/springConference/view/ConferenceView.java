@@ -72,3 +72,92 @@ public class ConferenceView extends VerticalLayout {
 
 }
 */
+
+package io.bcn.springConference.view;
+
+import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
+import java.util.ArrayList;
+import java.util.List;
+
+@PageTitle("Conference")
+@Route(value = "/Conference", layout = MainLayout.class)
+public class ConferenceView extends Composite<VerticalLayout> {
+    public ConferenceView(){
+        getContent().setWidth("100%");
+        getContent().getStyle().set("flex-grow", "1");
+
+        TextField linkYoutube = new TextField("Link Youtube");
+        TextField title = new TextField("Title");
+        TextField conferenceName = new TextField("Conference name");
+        TextField content = new TextField("Content");
+        ComboBox durationBox = new ComboBox();
+        durationBox.setLabel("Duration");
+        durationBox.setWidth("1000px");
+        durationBox.setMinWidth("50px");
+        durationBox.setMaxWidth("350px");
+        setComboBoxSampleData(durationBox);
+
+        TextField duration = new TextField("Duration");
+        TextField room = new TextField("Room");
+        PasswordField password = new PasswordField("Password");
+        PasswordField confirmPassword = new PasswordField("Confirm password");
+
+        DatePicker datePicker = new DatePicker("Date");
+        FormLayout formLayout = new FormLayout();
+        formLayout.add(datePicker, linkYoutube, title, conferenceName, content, durationBox,
+                room);
+        formLayout.setResponsiveSteps(
+                // Use one column by default
+                new ResponsiveStep("0", 1),
+                // Use two columns, if layout's width exceeds 500px
+                new ResponsiveStep("500px", 2));
+        // Stretch the username field over 2 columns
+        //formLayout.setColspan(username, 2);
+        getContent().add(formLayout);
+        Button createButton = new Button("Create");
+        createButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        Button readButton = new Button("Read");
+        readButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        Button updateButton = new Button("Update");
+        updateButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        Button deleteButton = new Button("Delete");
+        deleteButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        HorizontalLayout buttonLayout = new HorizontalLayout(createButton, readButton, updateButton, deleteButton);
+        buttonLayout.getStyle().set("flex-wrap", "wrap");
+        buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+        getContent().add(buttonLayout);
+
+    }
+
+    private void setComboBoxSampleData(ComboBox comboBox) {
+        List<String> sampleItems = new ArrayList<>();
+        sampleItems.add("20");
+        sampleItems.add("30");
+        sampleItems.add("40");
+        sampleItems.add("50");
+        sampleItems.add("60");
+        sampleItems.add("70");
+        sampleItems.add("80");
+        sampleItems.add("90");
+        sampleItems.add("100");
+        comboBox.setItems(sampleItems);
+        comboBox.setItemLabelGenerator(item -> ((String) item));
+    }
+}
