@@ -42,4 +42,8 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<Conference> conferences;
 
+    @Override
+    public String toString(){
+        return String.join(",", this.getId().toString(), this.getTitle(), this.getAuthor(), this.getISBN());
+    }
 }

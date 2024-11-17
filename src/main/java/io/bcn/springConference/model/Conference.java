@@ -53,4 +53,8 @@ public class Conference {
             nullable = false)
     private Speaker speaker;
 
+    @Override
+    public String toString(){
+        return String.join(",", this.getId().toString(), this.getTitle(), this.getConferenceName(), this.getDate(), this.getRoom(), this.getDuration().toString(), this.getBook().toString(), this.getSpeaker().toString());
+    }
 }

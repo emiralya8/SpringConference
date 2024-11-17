@@ -34,6 +34,11 @@ public class Speaker {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "speaker")
+    @OneToMany(mappedBy = "speaker", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Conference> conferences;
+
+    @Override
+    public String toString(){
+        return String.join(",", this.getId().toString(), this.getName(), this.getBio(), this.getEmail());
+    }
 }
