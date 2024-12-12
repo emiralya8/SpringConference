@@ -10,7 +10,7 @@ COPY ${JAR_FILE} springConference.jar
 # COPY springConference-0.0.1-SNAPSHOT.jar springConference.jar
 
 # Set the entry point to run the JAR file
-ENTRYPOINT ["java", "-jar", "springConference.jar"]
+ENTRYPOINT ["java", "-jar", "/springConference.jar"]
 
 
 #FROM openjdk:11-jre-slim
